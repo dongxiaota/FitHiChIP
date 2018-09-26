@@ -674,6 +674,21 @@ with respect to different reference genomes (such as hg19, mm9, mm10, etc.) User
 in details for understanding the parameters.
 
 
+Utility 5 - Producing FitHiChIP loops with different FDR thresholds, and merging those loops
+-------------------------------------------------------------------------------------------------
+
+It is useful to obtain significant loops on different FDR threholds, without running the complete FitHiChIP module with different FDR threshold parameters. Those significant loops can also be applied connected component based modeling, to merge the adjacent loops for improved specificity.
+
+For a custom FDR threshold of 0.05, first user should apply the following awk script on the file PREFIX.interactions_FitHiC.bed (mentioned in section 4.1.4, file no C):
+
+awk '((NR==1) || ($NF<0.05))' ${PREFIX}.interactions_FitHiC.bed > ${PREFIX}.interactions_FitHiC_Q0.05.bed
+
+Assuming the source code of FitHiChIP is placed within the folder 
+
+With the generated significant loops, now user can apply the 
+
+
+
 Sample logs from the console, corresponding to the TestData
 --------------------------------------------------------------
 
