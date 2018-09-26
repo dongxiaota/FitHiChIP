@@ -683,10 +683,11 @@ For a custom FDR threshold of 0.05, first user should apply the following awk sc
 
 awk '((NR==1) || ($NF<0.05))' ${PREFIX}.interactions_FitHiC.bed > ${PREFIX}.interactions_FitHiC_Q0.05.bed
 
-Assuming the source code of FitHiChIP is placed within the folder 
+Assuming the source code of FitHiChIP is placed within the folder ${CodeDir}, user can merge the adjacent loops using the following command:
 
-With the generated significant loops, now user can apply the 
+python ${CodeDir}/src/CombineNearbyInteraction.py --InpFile ${PREFIX}.interactions_FitHiC_Q0.05.bed --OutFile ${PREFIX}.interactions_FitHiC_Q0.05_MergeNearContacts.bed --headerInp 1 --binsize 5000 --percent 100 --Neigh 2
 
+The file ${PREFIX}.interactions_FitHiC_Q0.05_MergeNearContacts.bed is the set of loops generated after merging adjacent ones.
 
 
 Sample logs from the console, corresponding to the TestData
